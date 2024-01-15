@@ -17,4 +17,13 @@ code {
 .d-flex{
   display:flex;
   justify-content: center;
+  align-items: center;
+}
+.btn-btn{
+  padding:0 10px;
+  margin-left: 10px;
+
+}
+.list{
+  margin: 5px 0;
 }

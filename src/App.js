@@ -103,7 +103,7 @@ function App() {
             Add Todo
           </button>
         ) : (
-          <button type="button" onClick={updateTodoItem}>
+          <button type="button" onClick={updateTodoItem} className="">
             update Todo
           </button>
         )}
@@ -112,12 +112,13 @@ function App() {
         <h1>Add Todo List</h1>
         {list && list.length > 0
           ? list.map((item) => (
-              <div key={item.id} className="d-flex">
-                <li>{item.name}</li>
-                <button type="button" onClick={() => deleteTodoItem(item.id)}>
+              <div key={item.id} className="d-flex ">
+                <li className="list">{item.name}</li>
+                
+                <button type="button" onClick={() => deleteTodoItem(item.id)} className="btn-btn">
                   Delete
                 </button>
-                <button type="button" onClick={() => handleEdit(item)}>
+                <button type="button" onClick={() => handleEdit(item)} className="btn-btn">
                   Edit
                 </button>
               </div>
