@@ -113,7 +113,7 @@ function App() {
         )}
       </div>
       <ul className="list-type">
-        <h1>Add Todo List</h1>
+        <h1> Todo List</h1>
         {list && list.length > 0
           ? list.map((item) => (
               <div key={item.id} className="d-flex ">
