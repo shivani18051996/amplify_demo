@@ -26,23 +26,27 @@ function App() {
 
   async function createTodoItem() {
     try {
+      if (!name.trim()) {
+        return; 
+      }
+  
       const result = await client.graphql({
         query: createTodo,
         variables: {
           input: {
             name: name,
-            description:"I will add later"
-            
+            description: "I will add later"
           },
         },
       });
+  
       setList((prevList) => [...prevList, result.data.createTodo]);
       setName("");
     } catch (error) {
       console.error("Error", error);
     }
   }
-
+  
   const deleteTodoItem = async (id) => {
     try {
       const result = await client.graphql({
