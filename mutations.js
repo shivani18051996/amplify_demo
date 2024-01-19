@@ -46,3 +46,25 @@ export const deleteTodo = /* GraphQL */ `
     }
   }
 `;
+export const createTask = /* GraphQL */ `
+  mutation CreateTask(
+    $input: CreateTaskInput!
+    $condition: ModelTaskConditionInput
+  ) {
+    createTask(input: $input, condition: $condition) {
+      id
+      name
+      user {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      taskUserId
+      __typename
+    }
+  }
+`;

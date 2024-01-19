@@ -27,3 +27,101 @@ code {
 .list{
   margin: 5px 0;
 }
+
+/* Add this CSS in your stylesheet or component */
+
+/* Add this CSS in your stylesheet or component */
+
+.task-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-input-container {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.task-input-container input {
+  flex: 1;
+  padding: 8px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.task-input-container button {
+  padding: 8px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.task-input-container button:hover {
+  background-color: #45a049;
+}
+
+.task-list-container, .user-list-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.task-item, .user-item {
+  flex: 1;
+  margin-right: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.task-item span, .user-item span {
+  font-size: 16px;
+  color: #333;
+}
+
+.combined-list-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.combined-item {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: space-between;
+}
+
+.combined-item span {
+  font-size: 16px;
+  color: #333;
+  flex: 1;
+}
+/* Media query for responsiveness */
+@media screen and (max-width: 768px) {
+  .task-input-container {
+    flex-direction: column;
+  }
+
+  .task-input-container input {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .task-item, .user-item {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}

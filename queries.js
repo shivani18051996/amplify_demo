@@ -12,7 +12,7 @@ export const getTodo = /* GraphQL */ `
       __typename
     }
   }
-`;
+`;  
 export const listTodos = /* GraphQL */ `
   query ListTodos(
     $filter: ModelTodoFilterInput
