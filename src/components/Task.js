@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { Audio, ColorRing } from "react-loader-spinner";
+
 import {
   createTask,
   createUser,
@@ -17,6 +19,7 @@ const client = generateClient();
 
 const Task = () => {
   const [text, setText] = useState("");
+  const [loading, setLoading] = useState(false);
   const [task, setTask] = useState([]);
   const [user, setUser] = useState([]);
   const [userText, setUserText] = useState("");
@@ -24,9 +27,11 @@ const Task = () => {
 
   useEffect(() => {
     async function showList() {
+      setLoading(true);
       const result1 = await client.graphql({ query: listTasks });
       const list = result1?.data?.listTasks?.items;
       setTask(list);
+      setLoading(false);
     }
     showList();
   }, []);
@@ -34,8 +39,10 @@ const Task = () => {
   useEffect(() => {
     async function showUserList() {
       const result1 = await client.graphql({ query: listUsers });
+      setLoading(true);
       const list = result1?.data?.listUsers?.items;
       setUser(list);
+      setLoading(false);
     }
     showUserList();
   }, []);
@@ -113,7 +120,12 @@ const Task = () => {
 
   const handleTaskUpdate = async () => {
     try {
-      if (!text.trim() || !userText.trim() || !isEdit.taskId || !isEdit.userId) {
+      if (
+        !text.trim() ||
+        !userText.trim() ||
+        !isEdit.taskId ||
+        !isEdit.userId
+      ) {
         return;
       }
       await client.graphql({
@@ -127,7 +139,7 @@ const Task = () => {
         },
       });
       await client.graphql({
-        query:updateUser,
+        query: updateUser,
         variables: {
           id: isEdit.userId,
           input: {
@@ -139,9 +151,7 @@ const Task = () => {
 
       setTask((prevTasks) =>
         prevTasks.map((task) =>
-          task.taskUserId === isEdit.userId
-            ? { ...task, name: text }
-            : task
+          task.taskUserId === isEdit.userId ? { ...task, name: text } : task
         )
       );
 
@@ -160,6 +170,20 @@ const Task = () => {
 
   return (
     <div className="task-container">
+      {loading &&
+        task &&
+        task.length &&
+        user &&
+        user.length &&(
+          <ColorRing
+            visible={true}
+            height="80"
+            width="80"
+            ariaLabel="color-ring-loading"
+            wrapperClass="color-ring-wrapper"
+            colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
+          />
+        )}
       <h2>Task Management</h2>
       <div className="task-input-container">
         <input
@@ -184,9 +208,8 @@ const Task = () => {
           </button>
         )}
       </div>
-
       <div className="combined-list-container">
-        {task && task.length && user && user.length
+        {task && task.length && user && user.length && !loading
           ? task.map((tsk) => {
               const matchingUser = user.find(
                 (usr) => usr.id === tsk.taskUserId
@@ -207,14 +230,11 @@ const Task = () => {
                   >
                     Edit
                   </button>
-        
                 </div>
               ) : null;
             })
           : "No Records found"}
       </div>
-
-      
     </div>
   );
 };
