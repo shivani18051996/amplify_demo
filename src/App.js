@@ -13,6 +13,7 @@ import config from "./amplifyconfiguration.json";
 // } from "./graphql/mutations";
 // import { listTodos } from "./graphql/queries";
 import Task from "./components/Task";
+import Post from "./components/Post";
 
 
 Amplify.configure(config);
@@ -151,6 +152,7 @@ function App() {
 
 
     <Task/>
+    <Post/>
     </div>
   );
 }
